@@ -1,0 +1,6 @@
+home|The season at a glance|Conflicts and outstanding money, before they become a problem
+events|Every event in one list|Grouped by month, with payment state on each card
+event-detail|One hub per event|Payments, crew, inventory and runsheet, all collapsible
+receivables|Money that is due|Overdue, this week and upcoming — with real reminder copy
+team|Who is booked when|Availability for any date, double-bookings in red
+calendar|The calendar is the spine|Month view with conflict dates marked

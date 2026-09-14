@@ -12,7 +12,8 @@ folder holds the rules, the data model both apps implement, and the setup steps.
   for — `mehfil-icon-1024.png` (App Store), `mehfil-icon-512.png` (Play), `mehfil-icon-120.png` (Google consent
   screen), `mehfil-feature-1024x500.png` (Play feature graphic) — plus the Xcode AppIcon and the Android
   adaptive-icon layers (mesh background, mark foreground, white monochrome for themed icons). Edit the SVG, re-run
-  the script, rebuild both apps.
+  the script, rebuild both apps. `make_screenshots.py` frames the raw captures in `branding/screenshots/raw/` into
+  1080×1920 listing images (`branding/screenshots/play/`) with the captions from `captions.txt`.
 
 ## One-time setup (about 30 minutes)
 
@@ -63,8 +64,9 @@ production) so any Google account can sign in.
 - App Store: **Sign in with Apple** is required because Google sign-in is offered — done. Account deletion is in
   Profile → Account, as guideline 5.1.1(v) requires. App Privacy answers: Email, Name, Other user content —
   linked to the user, not used for tracking (matches `PrivacyInfo.xcprivacy`).
-- Play: Data safety form — collects Email address, Name, App activity (user-generated content); encrypted in
-  transit; users can request deletion in-app. Target API 36.
+- Play: Data safety form — collects Email address, Name, Phone number, Other financial info (payment records the
+  vendor enters) and Other user-generated content; encrypted in transit; not shared; deletion in-app and at
+  `https://sanu5.github.io/delete-account/`. Target API 36. Full walkthrough: `PLAY_STORE.md`.
 
 ## Running without Firebase
 Both apps run in **device-only** mode when the config file is missing: a "Continue on this device" account with
