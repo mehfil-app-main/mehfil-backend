@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Every vendor's data lives under vendors/{uid}; only that signed-in user can touch it.
+    function isOwner(uid) { return request.auth != null && request.auth.uid == uid; }
+    function knownCollection(name) {
+      return name in ['clients', 'events', 'milestones', 'crew', 'inventory', 'tasks', 'attendance',
+                      'reminders', 'expenses', 'enquiries', 'packages', 'changeRequests'];
+    }
+
+    match /vendors/{uid} {
+      allow read, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid) && request.resource.data.size() <= 40;
+
+      match /{collection}/{docId} {
+        allow read, delete: if isOwner(uid) && knownCollection(collection);
+        allow create, update: if isOwner(uid) && knownCollection(collection) && request.resource.data.size() <= 60;
+      }
+    }
+
+    match /{document=**} { allow read, write: if false; }
+  }
+}
