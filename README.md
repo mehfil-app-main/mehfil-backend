@@ -7,6 +7,12 @@ folder holds the rules, the data model both apps implement, and the setup steps.
 - `firestore.rules` — only the signed-in owner can read or write `vendors/{uid}` and its subcollections.
 - `DATA_MODEL.md` — the document shapes shared by `mehfil-ios` and `mehfil-android`.
 - `PRIVACY.md`, `TERMS.md` — the policy pages the apps and store listings link to.
+- `branding/` — the app icon. `mehfil-icon.svg` is the master (brand mesh of indigo, magenta and ruby under a gold
+  ribbon M with a sparkle); `make_icon.py` renders it with macOS QuickLook and writes every raster the stores ask
+  for — `mehfil-icon-1024.png` (App Store), `mehfil-icon-512.png` (Play), `mehfil-icon-120.png` (Google consent
+  screen), `mehfil-feature-1024x500.png` (Play feature graphic) — plus the Xcode AppIcon and the Android
+  adaptive-icon layers (mesh background, mark foreground, white monochrome for themed icons). Edit the SVG, re-run
+  the script, rebuild both apps.
 
 ## One-time setup (about 30 minutes)
 
@@ -45,7 +51,7 @@ folder holds the rules, the data model both apps implement, and the setup steps.
 
 ### 4 · Google Cloud consent screen
 Firebase creates the OAuth clients. In Google Cloud Console → APIs & Services → OAuth consent screen: set the app
-name, support email, add the privacy-policy URL, and publish (External → In production) so any Google account can sign in.
+name, support email, the logo (`branding/mehfil-icon-120.png`), add the privacy-policy URL, and publish (External → In production) so any Google account can sign in.
 
 ### 5 · Store listings
 - Privacy policy URL (both stores): `https://github.com/Sanu5/mehfil-ios/blob/main/PRIVACY.md` (or host `PRIVACY.md` on your own domain).
