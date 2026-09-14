@@ -35,3 +35,10 @@ Derived, never stored: overdue (pending milestone with `due` before today), crew
 `bookings` contain two events that overlap in time), payment state on event cards, season totals.
 
 Optional fields are omitted from the document when absent (iOS) or written as `null` (Android); both readers accept either.
+
+## Phone numbers
+- `vendors/{uid}.phone` is stored in **E.164** (`+919811008123`) once verified; `phoneVerified: boolean` records that
+  an OTP confirmed it and the number is linked to the Firebase user (`user.phoneNumber`). A number can only reach
+  the profile through the OTP flow (sign in with phone, or link/update from onboarding, Account and Business details).
+  Device-only builds store whatever was typed with `phoneVerified: false`.
+- Client phone numbers (`clients/{id}.phone`) are entered by the vendor and not verified.

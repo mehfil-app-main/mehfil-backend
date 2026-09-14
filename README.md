@@ -19,7 +19,10 @@ folder holds the rules, the data model both apps implement, and the setup steps.
 
 ### 1 · Firebase project
 1. [console.firebase.google.com](https://console.firebase.google.com) → **Add project** → name it `mehfil` (Analytics optional).
-2. **Build → Authentication → Get started → Sign-in method**: enable **Google** (set the support email) and **Apple**.
+2. **Build → Authentication → Get started → Sign-in method**: enable **Google** (set the support email), **Apple** and
+   **Phone**. Phone sign-in sends real SMS, which needs the project on the **Blaze (pay as you go)** plan — the free
+   allowance covers a small app; add a budget alert. While Phone is open, add a **phone number for testing**
+   (e.g. `+91 98765 43210` → code `123456`) so the simulator, the emulator and store reviewers can sign in without an SMS.
 3. **Build → Firestore Database → Create database** → production mode → region `asia-south1` (Mumbai).
 4. Deploy the rules from this folder:
    ```bash
@@ -35,6 +38,11 @@ folder holds the rules, the data model both apps implement, and the setup steps.
 2. In Xcode: Signing & Capabilities → your team; the **Sign in with Apple** capability is already in
    `Mehfil.entitlements` — Xcode will register it on the App ID.
 3. Firebase → Authentication → Apple provider needs nothing extra for native iOS sign-in.
+4. **Phone sign-in on iOS** verifies the app with a silent push. Apple Developer → **Keys → +** → tick *Apple Push
+   Notifications service (APNs)* → Register → download the `.p8`, note the Key ID. Firebase → Project settings →
+   **Cloud Messaging** → *Apple app configuration* → **Upload** the key with Key ID and Team ID. (Without it Firebase
+   falls back to a reCAPTCHA page, which works but is uglier.) The Push Notifications capability is already in
+   `Mehfil.entitlements`; Xcode enables it on the App ID when you pick your team.
 
 ### 3 · Android app
 1. Project settings → **Add app → Android**, package `com.mehfil.app`. Add your **SHA-1 and SHA-256** fingerprints:
@@ -45,7 +53,10 @@ folder holds the rules, the data model both apps implement, and the setup steps.
    and later the **Play App Signing** fingerprints from Play Console → Setup → App signing.
 2. Download `google-services.json` into `mehfil-android/app/` (git-ignored; the Gradle build applies the
    google-services plugin only when the file exists).
-3. Sign in with Apple on Android uses Firebase's web flow. In Apple Developer → Certificates, IDs & Profiles →
+3. **Phone sign-in on Android** verifies the app with the Play Integrity API: Google Cloud Console → APIs & Services
+   → Library → **Play Integrity API** → Enable (same project). Both SHA fingerprints from step 1 must be registered.
+   Builds installed on the emulator use the test numbers instead.
+4. Sign in with Apple on Android uses Firebase's web flow. In Apple Developer → Certificates, IDs & Profiles →
    **Services IDs** create one (e.g. `com.anish.mehfil.web`), enable Sign in with Apple, set the return URL to
    `https://<your-project>.firebaseapp.com/__/auth/handler`, and paste the Services ID + key into
    Firebase → Authentication → Apple provider (OAuth code flow configuration).
