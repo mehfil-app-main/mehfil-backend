@@ -49,12 +49,17 @@ folder holds the rules, the data model both apps implement, and the setup steps.
    `https://<your-project>.firebaseapp.com/__/auth/handler`, and paste the Services ID + key into
    Firebase → Authentication → Apple provider (OAuth code flow configuration).
 
-### 4 · Google Cloud consent screen
-Firebase creates the OAuth clients. In Google Cloud Console → APIs & Services → OAuth consent screen: set the app
-name, support email, the logo (`branding/mehfil-icon-120.png`), add the privacy-policy URL, and publish (External → In production) so any Google account can sign in.
+### 4 · Website, then the Google consent screen
+Google only accepts a privacy-policy URL and homepage on a domain you can prove you own, so the policy pages live
+on GitHub Pages at **https://sanu5.github.io/** (repo `Sanu5/sanu5.github.io`, source in the `site` folder
+of this workspace). Verify that domain once in Search Console (see the site README), then in Google Cloud Console
+→ Google Auth Platform → **Branding**: app name, support email, logo (`branding/mehfil-icon-120.png`),
+homepage `https://sanu5.github.io/`, privacy `https://sanu5.github.io/privacy/`, terms
+`https://sanu5.github.io/terms/`, authorized domain `sanu5.github.io`; then **Audience → Publish** (External → In
+production) so any Google account can sign in.
 
 ### 5 · Store listings
-- Privacy policy URL (both stores): `https://github.com/Sanu5/mehfil-ios/blob/main/PRIVACY.md` (or host `PRIVACY.md` on your own domain).
+- Privacy policy URL (both stores): `https://sanu5.github.io/privacy/`.
 - App Store: **Sign in with Apple** is required because Google sign-in is offered — done. Account deletion is in
   Profile → Account, as guideline 5.1.1(v) requires. App Privacy answers: Email, Name, Other user content —
   linked to the user, not used for tracking (matches `PrivacyInfo.xcprivacy`).
