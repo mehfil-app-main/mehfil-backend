@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Mehfil app icon — one SVG master (mehfil-icon.svg), rasterised with macOS QuickLook, cut into every asset.
 
-  branding/mehfil-icon.svg                master: brand mesh + gold ribbon M (edit this)
+  branding/mehfil-icon.svg                master: Rausch ground + white-and-gold ribbon M (edit this)
   branding/mehfil-mark.svg                mark only, transparent (for docs, print, the consent screen)
   branding/mehfil-icon-1024.png           App Store Connect / Xcode AppIcon
   branding/mehfil-icon-512.png            Google Play listing icon
@@ -23,11 +23,11 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]          # …/mehfil
 OUT = Path(__file__).resolve().parent
 MASTER = OUT / "mehfil-icon.svg"
-NAVY = "#1C1E54"
-FONT_LIGHT = ROOT / "ios/Mehfil/Fonts/Inter-Light.ttf"
+INK = "#222222"    # the Airbnb skin's ground for the feature graphic
+FONT_LIGHT = ROOT / "ios/Mehfil/Fonts/Inter-Bold.ttf"   # the skin's display weight
 FONT_REG = ROOT / "ios/Mehfil/Fonts/Inter-Regular.ttf"
 # Android adaptive icons show the inner 66dp of a 108dp canvas; the mark is scaled about the centre to fit that circle.
-ANDROID_MARK_SCALE = 0.68
+ANDROID_MARK_SCALE = 0.74
 DENSITIES = {"mdpi": 1, "hdpi": 1.5, "xhdpi": 2, "xxhdpi": 3, "xxxhdpi": 4}
 
 
@@ -91,15 +91,15 @@ def monochrome_xml() -> str:
 def feature_graphic(icon: Image.Image):
     """Play Store feature graphic (1024×500): the icon tile on the left, wordmark and tagline in Inter."""
     W, H, ss = 1024, 500, 3
-    im = Image.new("RGBA", (W * ss, H * ss), NAVY)
+    im = Image.new("RGBA", (W * ss, H * ss), INK)
     d = ImageDraw.Draw(im)
     tile = rounded(icon.resize((300 * ss, 300 * ss), Image.LANCZOS), 0.22)
     im.alpha_composite(tile, (80 * ss, 100 * ss))
     light = ImageFont.truetype(str(FONT_LIGHT), 96 * ss); regular = ImageFont.truetype(str(FONT_REG), 30 * ss)
     d.text((440 * ss, 150 * ss), "Mehfil", font=light, fill="#FFFFFF", anchor="ls")
-    d.text((440 * ss, 205 * ss), "Run the wedding season", font=regular, fill="#C9CBEA", anchor="ls")
-    d.text((440 * ss, 248 * ss), "without the spreadsheet.", font=regular, fill="#C9CBEA", anchor="ls")
-    d.rounded_rectangle((440 * ss, 290 * ss, 520 * ss, 298 * ss), radius=4 * ss, fill="#F4CD5A")
+    d.text((440 * ss, 205 * ss), "Run the wedding season", font=regular, fill="#DDDDDD", anchor="ls")
+    d.text((440 * ss, 248 * ss), "without the spreadsheet.", font=regular, fill="#DDDDDD", anchor="ls")
+    d.rounded_rectangle((440 * ss, 290 * ss, 520 * ss, 298 * ss), radius=4 * ss, fill="#FF385C")
     im.convert("RGB").resize((W, H), Image.LANCZOS).save(OUT / "mehfil-feature-1024x500.png")
 
 
