@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
-  <!-- Mehfil app icon · Airbnb skin. Rausch ground; the M is one ribbon whose second half folds into gold —
-       the brand voltage plus the one warm note a wedding brand earns. Geometry is a splayed capital M so it
+  <!-- Mehfil app icon. A rani-pink ground; the M is one ribbon whose second half folds into gold — rani and
+       gold, the pairing of an Indian wedding, and the one warm note the brand spends. Geometry is a splayed capital M so it
        still reads at 48px; the fold sits on the centre join, where a round cap hides the seam. -->
   <defs>
     <linearGradient id="ground" x1="0" y1="0" x2="0.35" y2="1">
-      <stop offset="0" stop-color="#FF5A78"/>
-      <stop offset="1" stop-color="#D40A3E"/>
+      <stop offset="0" stop-color="#DD4987"/>
+      <stop offset="1" stop-color="#A71C56"/>
     </linearGradient>
     <linearGradient id="gold" x1="0.2" y1="0" x2="0.8" y2="1">
       <stop offset="0" stop-color="#FFF3CE"/>

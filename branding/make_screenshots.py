@@ -20,12 +20,12 @@ ICON = HERE / "mehfil-icon-1024.png"
 
 
 def background():
-    """The icon's mesh, blurred and darkened, as a soft ground."""
+    """The icon's ground, blurred and darkened toward ink, as a soft backdrop."""
     bg = Image.open(ICON).convert("RGB").resize((W, W), Image.LANCZOS)
-    canvas = Image.new("RGB", (W, H), "#1C1E54")
+    canvas = Image.new("RGB", (W, H), "#222222")
     canvas.paste(bg.resize((W, H)), (0, 0))
     canvas = canvas.filter(ImageFilter.GaussianBlur(160))
-    shade = Image.new("RGB", (W, H), "#1C1E54")
+    shade = Image.new("RGB", (W, H), "#222222")
     return Image.blend(canvas, shade, 0.35)
 
 

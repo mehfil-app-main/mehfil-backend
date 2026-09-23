@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """Mehfil app icon — one SVG master (mehfil-icon.svg), rasterised with macOS QuickLook, cut into every asset.
 
-  branding/mehfil-icon.svg                master: Rausch ground + white-and-gold ribbon M (edit this)
+  branding/mehfil-icon.svg                master: rani ground + white-and-gold ribbon M (edit this)
   branding/mehfil-mark.svg                mark only, transparent (for docs, print, the consent screen)
   branding/mehfil-icon-1024.png           App Store Connect / Xcode AppIcon
   branding/mehfil-icon-512.png            Google Play listing icon
   branding/mehfil-icon-120.png            Google OAuth consent-screen logo
   branding/mehfil-feature-1024x500.png    Google Play feature graphic
   ios/Mehfil/Assets.xcassets/AppIcon.appiconset/icon-1024.png
-  android …/res/mipmap-*/ic_launcher_background.png   adaptive-icon background (mesh)
+  android …/res/mipmap-*/ic_launcher_background.png   adaptive-icon background (gradient)
   android …/res/mipmap-*/ic_launcher_foreground.png   adaptive-icon foreground (M + sparkles in the safe zone)
   android …/res/drawable/ic_launcher_monochrome.xml   themed-icon layer (Android 13+)
   android …/res/mipmap-*/ic_launcher.png              legacy launcher bitmaps
@@ -23,7 +23,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]          # …/mehfil
 OUT = Path(__file__).resolve().parent
 MASTER = OUT / "mehfil-icon.svg"
-INK = "#222222"    # the Airbnb skin's ground for the feature graphic
+INK = "#222222"    # the feature graphic's ground
 FONT_LIGHT = ROOT / "ios/Mehfil/Fonts/Inter-Bold.ttf"   # the skin's display weight
 FONT_REG = ROOT / "ios/Mehfil/Fonts/Inter-Regular.ttf"
 # Android adaptive icons show the inner 66dp of a 108dp canvas; the mark is scaled about the centre to fit that circle.
@@ -99,7 +99,7 @@ def feature_graphic(icon: Image.Image):
     d.text((440 * ss, 150 * ss), "Mehfil", font=light, fill="#FFFFFF", anchor="ls")
     d.text((440 * ss, 205 * ss), "Run the wedding season", font=regular, fill="#DDDDDD", anchor="ls")
     d.text((440 * ss, 248 * ss), "without the spreadsheet.", font=regular, fill="#DDDDDD", anchor="ls")
-    d.rounded_rectangle((440 * ss, 290 * ss, 520 * ss, 298 * ss), radius=4 * ss, fill="#FF385C")
+    d.rounded_rectangle((440 * ss, 290 * ss, 520 * ss, 298 * ss), radius=4 * ss, fill="#D6246E")
     im.convert("RGB").resize((W, H), Image.LANCZOS).save(OUT / "mehfil-feature-1024x500.png")
 
 

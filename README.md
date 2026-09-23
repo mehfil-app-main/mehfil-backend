@@ -7,11 +7,11 @@ folder holds the rules, the data model both apps implement, and the setup steps.
 - `firestore.rules` — only the signed-in owner can read or write `vendors/{uid}` and its subcollections.
 - `DATA_MODEL.md` — the document shapes shared by `mehfil-ios` and `mehfil-android`.
 - `PRIVACY.md`, `TERMS.md` — the policy pages the apps and store listings link to.
-- `branding/` — the app icon. `mehfil-icon.svg` is the master (brand mesh of indigo, magenta and ruby under a gold
-  ribbon M with a sparkle); `make_icon.py` renders it with macOS QuickLook and writes every raster the stores ask
+- `branding/` — the app icon. `mehfil-icon.svg` is the master (a rani-pink gradient under a ribbon M whose second
+  half folds into gold); `make_icon.py` renders it with macOS QuickLook and writes every raster the stores ask
   for — `mehfil-icon-1024.png` (App Store), `mehfil-icon-512.png` (Play), `mehfil-icon-120.png` (Google consent
   screen), `mehfil-feature-1024x500.png` (Play feature graphic) — plus the Xcode AppIcon and the Android
-  adaptive-icon layers (mesh background, mark foreground, white monochrome for themed icons). Edit the SVG, re-run
+  adaptive-icon layers (gradient background, mark foreground, white monochrome for themed icons). Edit the SVG, re-run
   the script, rebuild both apps. `make_screenshots.py` frames the raw captures in `branding/screenshots/raw/` into
   1080×1920 listing images (`branding/screenshots/play/`) with the captions from `captions.txt`.
 

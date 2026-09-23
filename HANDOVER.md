@@ -19,9 +19,9 @@ Both apps are feature-complete against the product spec, build clean, and run to
 with no backend configured — a buyer can open either project and see the whole product working in ten minutes.
 
 **Start with [`NOTES.md`](https://github.com/Sanu5/mehfil-design/blob/main/NOTES.md).** It is the most
-substantial document in the sale: six phases of design decisions, every derivation from the source design
-system, the rulings that were applied in review, and the full skin migration from the first visual language to
-the current one — with the measurements that forced each change. The code is a translation of that document.
+substantial document in the sale: the principles of the design system and the reasoning behind every token, six
+phases of design decisions, the rulings that were applied in review, and how the visual language evolved to the
+current one — with the measurements that forced each change. The code is a translation of that document.
 
 ---
 
